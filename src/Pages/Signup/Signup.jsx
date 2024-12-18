@@ -95,7 +95,7 @@ export default function Signup() {
               <input
                 type="text"
                 name="name"
-                placeholder="Type ypur name"
+                placeholder="Type your name"
                 value={formik.values.name}
                 onChange={formik.handleChange}
                 className="form-control w-96"
