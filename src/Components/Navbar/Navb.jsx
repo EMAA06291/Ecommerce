@@ -4,7 +4,7 @@ import { NavLink, Link } from "react-router-dom";
 import { Navbar } from "flowbite-react";
 import { UserContext } from "../../Context/User.context";
 import { Cartcontext } from "../../Context/Cart.context";
-
+//
 function HomeNavItem() {
   return (
     <li>
