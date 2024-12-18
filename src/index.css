@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+  font-family: "Encode Sans Expanded", sans-serif;
+}
+@media (max-width: 480px) {
+  .toggle {
+    flex-direction: column;
+    background-color: rgba(196, 193, 193, 0.479);
+    width: 100vh;
+  }
+}
+@media (max-width: 780px) {
+  .toggle {
+    flex-direction: column;
+    background-color: rgba(228, 223, 223, 0.295);
+    width: 100vh;
+  }
+}
+@layer components {
+  .btn {
+    @apply px-3 py-1 rounded-md bg-slate-200 hover:bg-slate-300 transition-colors duration-300 text-sm;
+  }
+  .form-control {
+    @apply px-2 py-1 rounded-md focus:outline-none border-2 border-slate-400 border-opacity-50 focus:border-primary-60 focus:caret-primary-70;
+  }
+}
+.boxShadow {
+  box-shadow: rgba(0, 0, 0, 0.2) 3px 3px 8px,
+    rgba(255, 255, 255, 0.6) -12px -12px 8px;
+}
