@@ -105,7 +105,7 @@ export default function Navb() {
     >
       <div className="container flex items-center gap-12">
         <Link to="/">
-          <img src={freshCartLogo} alt="FreshCart Logo" style={{maxWidth:"300%"}} />
+          <img src={freshCartLogo} alt="FreshCart Logo" className="xsm:min-w-[100px] />
         </Link>
 
         <Navbar.Toggle />
