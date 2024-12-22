@@ -27,7 +27,7 @@ export default function Card({ productInfo }) {
   return (
     <>
       <div className="card group/card boxShadow p-5 rounded-lg overflow-hidden ">
-        <div className="relative">
+        <div className="relative ">
           <img src={imageCover} alt="" />
           <div className="layer group-hover/card:opacity-100 transition-opacity duration-300 space-x-3 absolute left-0 top-0 bg-opacity-40 bg-slate-400 justify-center items-center flex w-full h-full opacity-0">
             <div
