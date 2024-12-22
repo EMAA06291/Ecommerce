@@ -1,5 +1,5 @@
 import React from 'react'
-import style from "./looding.module.css"
+import style from "./Looding.module.css"
 export default function Looding() {
   return (
     <div className={style.loading}>
