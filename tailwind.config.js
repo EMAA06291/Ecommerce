@@ -36,7 +36,7 @@ export default {
       fontFamily: "Cairo Variable",
       screens: {
         "2xL": "1920px",
-        xsm: "400px",
+        xsm: "300px",
       },
     },
   },
