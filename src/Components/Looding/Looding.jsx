@@ -1,13 +1,5 @@
 import React from 'react'
-import style from "./looding.module.css"
-/*************  ✨ Windsurf Command ⭐  *************/
-/**
- * A loading animation component for the website.
- * It displays a shopping cart line animation and a message that
- * changes from "Bringing you the goods…" to "This is taking long.
- * Something’s wrong." after a delay.
- */
-/*******  782251c9-8e9c-4a2c-8834-cb1bd6036406  *******/
+import style from "../Looding/Looding.module.css"
 export default function Looding() {
   return (
     <div className={style.loading}>
