@@ -4,90 +4,21 @@ import { NavLink, Link } from "react-router-dom";
 import { Navbar } from "flowbite-react";
 import { UserContext } from "../../Context/User.context";
 import { Cartcontext } from "../../Context/Cart.context";
-function HomeNavItem() {
-  return (
-    <li>
-      <NavLink
-        to="/"
-        className={({ isActive }) =>
-          `relative before:absolute before:w-0 before:h-0.5 before:bg-primary-80 before:left-0 before:-bottom-1 hover:before:w-full before:transition-[width] before:duration-300 ${
-            isActive ? "before:!w-full font-semibold" : ""
-          }`
-        }
-      >
-        Home
-      </NavLink>
-    </li>
-  );
-}
 
-function CategoriesNavItem() {
+const CustomNavLink = ({ to, children }) => {
   return (
-    <li>
-      <NavLink
-        to="/categories"
-        className={({ isActive }) =>
-          `relative before:absolute before:w-0 before:h-0.5 before:bg-primary-80 before:left-0 before:-bottom-1 hover:before:w-full before:transition-[width] before:duration-300 ${
-            isActive ? "before:!w-full font-semibold" : ""
-          }`
-        }
-      >
-        Categories
-      </NavLink>
-    </li>
+    <NavLink
+      to={to}
+      className={({ isActive }) =>
+        `relative before:absolute before:w-0 before:h-0.5 before:bg-primary-80 before:left-0 before:-bottom-1 hover:before:w-full before:transition-[width] before:duration-300 ${
+          isActive ? "before:!w-full font-semibold" : ""
+        }`
+      }
+    >
+      {children}
+    </NavLink>
   );
-}
-
-function BrandsNavItem() {
-  return (
-    <li>
-      <NavLink
-        to="/brands"
-        className={({ isActive }) =>
-          `relative before:absolute before:w-0 before:h-0.5 before:bg-primary-80 before:left-0 before:-bottom-1 hover:before:w-full before:transition-[width] before:duration-300 ${
-            isActive ? "before:!w-full font-semibold" : ""
-          }`
-        }
-      >
-        Brands
-      </NavLink>
-    </li>
-  );
-}
-
-function WishListNavItem() {
-  return (
-    <li>
-      <NavLink
-        to="/wishlist"
-        className={({ isActive }) =>
-          `relative before:absolute before:w-0 before:h-0.5 before:bg-primary-80 before:left-0 before:-bottom-1 hover:before:w-full before:transition-[width] before:duration-300 ${
-            isActive ? "before:!w-full font-semibold" : ""
-          }`
-        }
-      >
-        WishList
-      </NavLink>
-    </li>
-  );
-}
-
-function OrdersNavItem() {
-  return (
-    <li>
-      <NavLink
-        to="/allorders"
-        className={({ isActive }) =>
-          `relative before:absolute before:w-0 before:h-0.5 before:bg-primary-80 before:left-0 before:-bottom-1 hover:before:w-full before:transition-[width] before:duration-300 ${
-            isActive ? "before:!w-full font-semibold" : ""
-          }`
-        }
-      >
-        Orders
-      </NavLink>
-    </li>
-  );
-}
+};
 
 export default function Navb() {
   const { token, logout } = useContext(UserContext);
@@ -103,26 +34,17 @@ export default function Navb() {
       rounded
       className="bg-slate-100 shadow-md py-3 fixed top-0 w-full z-10"
     >
-      <div className="container flex items-center gap-12">
-        <Link to="/">
-          <img src={freshCartLogo} alt="FreshCart Logo" />
-        </Link>
+      <Link to="/" className="flex items-center">
+        <img
+          src={freshCartLogo}
+          alt="FreshCart Logo "
+          className="xsm:min-w-[100px]"
+        />
+      </Link>
 
-        <Navbar.Toggle />
-        <Navbar.Collapse>
-          {token && (
-            <ul className="flex gap-5 toggle">
-              <HomeNavItem />
-              <CategoriesNavItem />
-              <BrandsNavItem />
-              <WishListNavItem />
-              <OrdersNavItem />
-            </ul>
-          )}
-        </Navbar.Collapse>
-
+      <div className="flex order-2 items-center gap-4">
         {token && (
-          <div className="cart ml-auto relative">
+          <div className="cart relative">
             <Link to="/cart">
               <i className="fa-solid fa-cart-shopping cursor-pointer text-lg"></i>
             </Link>
@@ -137,46 +59,31 @@ export default function Navb() {
             </div>
           </div>
         )}
-
-        {!token && (
-          <ul className="flex gap-5 items-center ml-auto">
-            <li>
-              <NavLink
-                to="/signup"
-                className={({ isActive }) =>
-                  `relative before:absolute before:w-0 before:h-0.5 before:bg-primary-80 before:left-0 before:-bottom-1 hover:before:w-full before:transition-[width] before:duration-300 ${
-                    isActive ? "before:!w-full font-semibold" : ""
-                  }`
-                }
-              >
-                Sign Up
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/login"
-                className={({ isActive }) =>
-                  `relative before:absolute before:w-0 before:h-0.5 before:bg-primary-80 before:left-0 before:-bottom-1 hover:before:w-full before:transition-[width] before:duration-300 ${
-                    isActive ? "before:!w-full font-semibold" : ""
-                  }`
-                }
-              >
-                Login
-              </NavLink>
-            </li>
-          </ul>
-        )}
-
         {token && (
-          <ul>
-            <li onClick={logout}>
-              <span className="cursor-pointer">
-                <i className="fa-solid fa-right-from-bracket"></i>
-              </span>
-            </li>
+          <span onClick={logout} className="cursor-pointer">
+            <i className="fa-solid fa-right-from-bracket"></i>
+          </span>
+        )}
+        
+        <Navbar.Toggle />
+      </div>
+
+      <Navbar.Collapse>
+        {token ? (
+          <ul className="flex flex-col md:flex-row gap-5">
+            <li><CustomNavLink to="/">Home</CustomNavLink></li>
+            <li><CustomNavLink to="/categories">Categories</CustomNavLink></li>
+            <li><CustomNavLink to="/brands">Brands</CustomNavLink></li>
+            <li><CustomNavLink to="/wishlist">WishList</CustomNavLink></li>
+            <li><CustomNavLink to="/allorders">Orders</CustomNavLink></li>
+          </ul>
+        ) : (
+          <ul className="flex flex-col md:flex-row gap-5">
+            <li><CustomNavLink to="/signup">SignUp</CustomNavLink></li>
+            <li><CustomNavLink to="/login">Login</CustomNavLink></li>
           </ul>
         )}
-      </div>
+      </Navbar.Collapse>
     </Navbar>
   );
 }

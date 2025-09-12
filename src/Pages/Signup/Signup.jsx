@@ -15,7 +15,6 @@ export default function Signup() {
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
   };
-  <i onClick={togglePasswordVisiblity}>{eye}</i>;
 
   const navigate = useNavigate();
   const [accExistErr, setAccExistErr] = useState(null);
@@ -78,18 +77,21 @@ export default function Signup() {
     validationSchema,
     onSubmit: sendDataToRegister,
   });
+
   return (
     <>
-      <h1 className="text-xl text-slte-700 font-semibold mb-5">
+      <Toaster />
+      <h1 className="text-xl text-slte-700 font-semibold mb-5 text-center">
         <i className="fa-regular fa-circle-user"></i> Register Now
       </h1>
-      <div className="md:flex gap-24 justify-center xsm:justify-center sm:justify-center sm:px-16">
-        {" "}
-        <div>
-          <img src={signupImg} alt="" className=" grid-cols-2 " />
+      
+      <div className="flex flex-col md:flex-row gap-8 justify-center items-center px-4">
+   
+        <div className="w-full md:w-1/2 flex justify-center">
+          <img src={signupImg} alt="" className="w-full max-w-xs md:max-w-none" />
         </div>
-        <div className=" grid-cols-2 ">
-          {" "}
+        
+        <div className="w-full max-w-md">
           <form className="space-y-3" onSubmit={formik.handleSubmit}>
             <div className="name">
               <input
@@ -98,15 +100,14 @@ export default function Signup() {
                 placeholder="Type your name"
                 value={formik.values.name}
                 onChange={formik.handleChange}
-                className="form-control w-96"
+                className="form-control w-full"
                 onBlur={formik.handleBlur}
               />
               {formik.errors.name && formik.touched.name && (
-                <p className="text-red-600 mt-2 text-sm">
-                  {formik.errors.name}
-                </p>
+                <p className="text-red-600 mt-2 text-sm">{formik.errors.name}</p>
               )}
             </div>
+            
             <div className="email">
               <input
                 type="email"
@@ -114,40 +115,38 @@ export default function Signup() {
                 placeholder="email"
                 value={formik.values.email}
                 onChange={formik.handleChange}
-                className="form-control w-96"
+                className="form-control w-full"
                 onBlur={formik.handleBlur}
               />
               {formik.errors.email && formik.touched.email && (
-                <p className="text-red-600 mt-2 text-sm">
-                  {formik.errors.email}
-                </p>
+                <p className="text-red-600 mt-2 text-sm">{formik.errors.email}</p>
               )}
               {accExistErr && (
                 <p className="text-red-600 mt-2 text-sm">{accExistErr}</p>
               )}
             </div>
-            <div className="passwod relative">
+            
+            <div className="password relative">
               <input
                 type={passwordShown ? "text" : "password"}
                 name="password"
-                placeholder="passoword"
+                placeholder="password"
                 value={formik.values.password}
                 onChange={formik.handleChange}
-                className="form-control w-96  "
+                className="form-control w-full"
                 onBlur={formik.handleBlur}
               />
               <i
-                className="-translate-x-1 -translate-y-1 absolute bottom-0 xsm:-right-32 sm:right-24 md:right-1"
+                className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer"
                 onClick={togglePasswordVisiblity}
               >
                 {eye}
               </i>
-            </div>{" "}
+            </div>
             {formik.errors.password && formik.touched.password && (
-              <p className="text-red-600 mt-2 text-sm">
-                {formik.errors.password}
-              </p>
-            )}{" "}
+              <p className="text-red-600 mt-2 text-sm">{formik.errors.password}</p>
+            )}
+            
             <div className="repassword relative">
               <input
                 type={passwordShown ? "text" : "password"}
@@ -155,40 +154,37 @@ export default function Signup() {
                 placeholder="rePassword"
                 value={formik.values.rePassword}
                 onChange={formik.handleChange}
-                className="form-control w-96"
+                className="form-control w-full"
                 onBlur={formik.handleBlur}
               />
-
               <i
-                className="-translate-x-1 -translate-y-1 absolute bottom-0 xsm:-right-32 sm:right-24 md:right-1"
+                className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer"
                 onClick={togglePasswordVisiblity}
               >
                 {eye}
               </i>
             </div>
             {formik.errors.rePassword && formik.touched.rePassword && (
-              <p className="text-red-600 mt-2 text-sm">
-                {formik.errors.rePassword}
-              </p>
+              <p className="text-red-600 mt-2 text-sm">{formik.errors.rePassword}</p>
             )}
+            
             <div className="phone">
               <input
                 type="tel"
                 name="phone"
-                className="form-control w-96"
+                className="form-control w-full"
                 value={formik.values.phone}
                 onChange={formik.handleChange}
                 placeholder="phone number"
                 onBlur={formik.handleBlur}
               />
               {formik.errors.phone && formik.touched.phone && (
-                <p className="text-red-600 mt-2 text-sm">
-                  {formik.errors.phone}
-                </p>
+                <p className="text-red-600 mt-2 text-sm">{formik.errors.phone}</p>
               )}
             </div>
+            
             <button
-              className="btn bg-primary-70 hover:bg-primary-100 text-white font-semibold  xsm:w-1/2 md:w-full"
+              className="btn bg-primary-70 hover:bg-primary-100 text-white font-semibold w-full"
               type="submit"
             >
               Sign up
