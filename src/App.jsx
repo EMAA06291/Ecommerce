@@ -1,6 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-
 import Login from "./Pages/Login/Login";
 import Home from "./Pages/Home/Home";
 import Signup from "./Pages/Signup/Signup";
@@ -28,35 +27,13 @@ function App() {
       ),
       children: [
         { index: true, element: <Home /> },
-        {
-          path: "/cart",
-          element: <Cart />,
-        },
-        {
-          path: "/wishlist",
-          element: <Wishlist />,
-        },
-        {
-          path: "/brands",
-          element: <Brands />,
-        },
-        {
-          path: "/categories",
-          element: <Categories />,
-        },
-        {
-          path: "/proudct/:id",
-          element: <ProductDetails />,
-        },
-
-        {
-          path: "/chickout",
-          element: <ChickOut />,
-        },
-        {
-          path: "/allorders",
-          element: <UserOrders />,
-        },
+        { path: "/cart", element: <Cart /> },
+        { path: "/wishlist", element: <Wishlist /> },
+        { path: "/brands", element: <Brands /> },
+        { path: "/categories", element: <Categories /> },
+        { path: "/proudct/:id", element: <ProductDetails /> },
+        { path: "/chickout", element: <ChickOut /> },
+        { path: "/allorders", element: <UserOrders /> },
       ],
     },
     {
@@ -72,7 +49,6 @@ function App() {
       ],
     },
   ]);
-
   return (
     <>
       <UserProvider>
@@ -80,11 +56,10 @@ function App() {
           <WishProvider>
             <RouterProvider router={router} />
           </WishProvider>
-        </CartProvider>{" "}
+        </CartProvider>
       </UserProvider>
       <Toaster position="top-right" />
     </>
   );
 }
-
 export default App;
