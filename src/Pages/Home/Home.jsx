@@ -16,11 +16,9 @@ export default function Home() {
     let { data } = await axios.request(options);
     setProducts(data.data);
   }
-  useEffect(() => {
-    return () => {
-      getProducts();
-    };
-  }, []);
+ useEffect(() => {
+  getProducts();
+}, []);
 
   return (
     <>
